@@ -1,1 +1,88 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mir Wallet</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+</head>
+<body>
+    <div class="content">
+        <img src="/assets/images/logo.svg" alt="Логотип" class="content__logo">
+        <div class="content__title">
+            Спасибо за участие в демонстрации Mir Wallet
+        </div>
+        <a href="#" id="imgLink" target="_blank">
+            <img src="" class="content__img hidden" id="img">
+        </a>
+        <div class="content__title" id="text"></div>
+        <div class="content__sub-title">Подписка на 6 месяцев</div>
+        <div class="content__promocode" id="promocode">
+            
+        </div>
+        <div class="content__footer">
+            <div class="content__footer-img">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.75" y="0.75" width="24.5" height="24.5" rx="12.25" fill="#006848"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9279 8.34941C11.9279 8.93986 12.4068 9.42128 12.9936 9.42128C13.5975 9.42128 14.0777 8.93986 14.0777 8.34941C14.0777 7.75896 13.5975 7.27753 13.0059 7.27753C12.4117 7.27753 11.9279 7.75896 11.9279 8.34941ZM14.0657 12.2361C14.0657 11.6457 13.5843 11.1642 12.9939 11.1642C12.4034 11.1642 11.922 11.6457 11.922 12.2361V17.6506C11.922 18.2411 12.4034 18.7225 12.9939 18.7225C13.5843 18.7225 14.0657 18.2411 14.0657 17.6506V12.2361Z" fill="white"/>
+                </svg>
+            </div>
+            <span id="info">
+                Активируйте код в личном кабинете на сайте <a class="link" href="#" id="link2" target="_blank"></a>
+            </span>
+        </div>
+        <div class="content__footer-message" id="message">
+            Код скопирован
+        </div>
+    </div>
+</body>
+<script>
+    const urlParams = new URLSearchParams(window.location.search)
+    const product = urlParams.get('product')
+    const img = document.getElementById('img')
+    const text = document.getElementById('text')
+    const info = document.getElementById('info')
+    const imgLink = document.getElementById('imgLink')
+    const link2 = document.getElementById('link2')
+    switch (product) {
+        case "1":
+            img.src = `/assets/images/1.png`
+            img.classList.remove('hidden')
+            text.innerHTML = 'Онлайн-кинотеатр ivi'
+            info.classList.add('w1')
+            imgLink.setAttribute('href', 'https://www.ivi.ru')
+            link2.innerText = 'ivi.ru'
+            link2.setAttribute('href', 'https://www.ivi.ru')
+            break;
+        case "2":
+            img.src = `/assets/images/2.png`
+            img.classList.remove('hidden')
+            text.innerHTML = 'Сервис Яндекс Плюс'
+            info.classList.add('w2')
+            imgLink.setAttribute('href', 'https://plus.yandex.ru')
+            link2.innerText = 'plus.yandex.ru'
+            link2.setAttribute('href', 'https://plus.yandex.ru')
+            break;
+        case "3":
+            img.src = `/assets/images/3.png`
+            img.classList.remove('hidden')
+            text.innerHTML = 'Библиотека MyBook'
+            info.classList.add('w3')
+            imgLink.setAttribute('href', 'https://mybook.ru')
+            link2.innerText = 'mybook.ru'
+            link2.setAttribute('href', 'https://mybook.ru')
+            break;
+    }
+    const promocode = document.getElementById('promocode')
+    const message = document.getElementById('message')
+    promocode.innerHTML = urlParams.get('code')
+    promocode.onclick = function() {
+        navigator.clipboard.writeText(urlParams.get('code')).then(() => {
+            message.classList.add('show')
+            setTimeout(() => message.classList.remove('show'), 2000)
+    })
+    }
+</script>
+</html>
